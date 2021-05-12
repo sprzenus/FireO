@@ -150,7 +150,7 @@ def _parse_isoformat_time(tstr):
     return time_comps
 
 
-def datetime_from_isformat(date_string):
+def datetime_from_isoformat(date_string):
     """Construct a datetime from the output of datetime.isoformat()."""
     if not isinstance(date_string, str):
         raise TypeError('fromisoformat: argument must be str')
