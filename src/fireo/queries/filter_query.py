@@ -6,13 +6,9 @@ from fireo.queries.base_query import BaseQuery
 from fireo.queries.delete_query import DeleteQuery
 from fireo.queries.query_iterator import QueryIterator
 from fireo.utils import utils
+from fireo.utils.fromisoformat import datetime_from_isoformat
 from google.cloud import firestore
 from datetime import datetime
-
-# datetime.fromisoformat() is not available before python 3.7
-# this package allow to use fromisoformat() method
-from backports.datetime_fromisoformat import MonkeyPatch
-MonkeyPatch.patch_fromisoformat()
 
 
 class FilterQuery(BaseQuery):
@@ -166,7 +162,7 @@ class FilterQuery(BaseQuery):
                 # if field is datetime and type is str (which is usually come from cursor)
                 # then convert this string into datetime format
                 if isinstance(self.model._meta.get_field(name), DateTime) and type(val) is str:
-                    val = datetime.fromisoformat(val)
+                    val = datetime_from_isoformat(val)
 
                 # ISSUE # 78
                 # check if field is ReferenceField then to query this field we have to
