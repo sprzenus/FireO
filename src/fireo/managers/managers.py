@@ -303,7 +303,8 @@ class Manager:
         if key:
             self.queryset.delete(key, transaction, batch, child=child)
         else:
-            self.queryset.filter(self._parent_key).delete(child=child)
+            raise Exception("This is too dangerous, risk of removing all data from the collection")
+            #self.queryset.filter(self._parent_key).delete(child=child)
 
     def delete_all(self, key_list, batch=None, child=False):
         """Delete all documents according to given keys"""
