@@ -1,4 +1,5 @@
 from fireo.fields.base_field import Field
+from google.cloud.firestore_v1.field_path import FieldPath
 
 
 class IDField(Field):
@@ -24,3 +25,12 @@ class IDField(Field):
         self.name = name
         setattr(model_cls, name, None)
         model_cls._meta.add_model_id(self)
+
+    @property
+    def db_column_name(self):
+        """Get field according to column name
+
+        Return the name of the field according to `column_name` attribute if no `column_name` is
+        specify then same field name will return
+        """
+        return FieldPath.document_id()

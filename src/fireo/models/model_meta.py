@@ -214,6 +214,8 @@ class ModelMeta(type):
                 """
                 if name in self.field_list:
                     return self.field_list[name]
+                if len(self.id) >= 2 and name == self.id[0]:
+                    return self.id[1]
                 raise FieldNotFound(f'Field "{name}" not found in model "{cls.__name__}"')
 
             def get_field_by_column_name(self, name):
