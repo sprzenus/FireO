@@ -214,7 +214,7 @@ class ModelMeta(type):
                 """
                 if name in self.field_list:
                     return self.field_list[name]
-                if len(self.id) >= 2 and name == self.id[0]:
+                if len(self.id) >= 2 and (name == self.id[0] or name == '__name__'):
                     return self.id[1]
                 raise FieldNotFound(f'Field "{name}" not found in model "{cls.__name__}"')
 

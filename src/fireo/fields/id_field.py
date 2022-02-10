@@ -33,4 +33,4 @@ class IDField(Field):
         Return the name of the field according to `column_name` attribute if no `column_name` is
         specify then same field name will return
         """
-        return FieldPath.document_id()
+        return '__name__'
